@@ -1,5 +1,5 @@
 ---
-title: "Angsd demo analysis"
+title: "Angsd practice"
 author: "Minhong Zhu"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: 
