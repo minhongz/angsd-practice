@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-author: "Author"
+title: "Angsd demo analysis"
+author: "Minhong Zhu"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: 
   html_document: 
@@ -10,14 +10,19 @@ output:
     toc: true
     toc_depth: 2
     toc_float: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 # Purpose
-This document is an example RMarkdown to be edited and rerendered as an exercise. 
-It gives examples of some good practices, like using a dynamically rendered date, 
-advanced HTML options, informative headers, setting a random seed, and capturing
-runtime details.
 
+This document is an example RMarkdown to be edited and rerendered as an
+exercise. It gives examples of some good practices, like using a
+dynamically rendered date, advanced HTML options, informative headers,
+setting a random seed, and capturing runtime details.
+
+```{=html}
 <!--
 In a real analysis one would explain why this document exists and answer
 questions like:
@@ -25,26 +30,34 @@ What is trying to be figured out?
 How will that be done (or attempted to be done)?
 What are the expected outcomes prior to the analysis?
 -->
+```
 
 # Initialization
+
 ## Libraries
+
+```{=html}
 <!--
 It is helpful to declare all libraries needed by a document near the top.
 One may also want the chunk set to `warning=FALSE`, to avoid extra noise.
 -->
+```
 
 ```{r libs, message=FALSE}
 library(magrittr)
 library(tidyverse)
 ```
 
-## Parameters
+## Parameters {#parameters}
+
+```{=html}
 <!--
 Values that control what and how data are processed throughout a document are 
 useful to keep in one place.
 This is a good place to set global theme options.
 It is good practice to always declare a random numnber seed, even if unneeded.
 -->
+```
 
 ```{r params}
 set.seed(20240118)
@@ -53,21 +66,25 @@ theme_set(theme_bw())
 ```
 
 # Data
+
 This document will look at the `iris` dataset.
 
 ```{r view_data}
 iris
 ```
 
-The observations are in centimeters and appear rounded to the nearest millimeter.
+The observations are in centimeters and appear rounded to the nearest
+millimeter.
 
 # Analysis
-Here are a couple exploratory data visualizations to see the variation in 
-characteristics within and across species.
+
+Here are a couple exploratory data visualizations to see the variation
+in characteristics within and across species.
 
 ## Comparing Sepal Length and Width by Species
 
 ### Point plot
+
 ```{r plt_length_v_width, fig.width=5, fig.height=4}
 iris %>%
   mutate(Species=str_to_title(Species)) %>%
@@ -76,12 +93,13 @@ iris %>%
   labs(x="Sepal Width [cm]", y="Sepal Length [cm]")
 ```
 
-The dots appear regularly spaced and could be prone to overplotting. That is, 
-if two observations have the same measurement after rounding, then only the 
-last one plotted would appear in the table. One way to deal with this is to add 
-*jitter* (random uniform noise) to the data.
+The dots appear regularly spaced and could be prone to overplotting.
+That is, if two observations have the same measurement after rounding,
+then only the last one plotted would appear in the table. One way to
+deal with this is to add *jitter* (random uniform noise) to the data.
 
 ### Jitter plot
+
 ```{r plt_length_v_width_jitter, fig.width=5, fig.height=4}
 iris %>%
   mutate(Species=str_to_title(Species)) %>%
@@ -90,10 +108,10 @@ iris %>%
   labs(x="Sepal Width [cm]", y="Sepal Length [cm]")
 ```
 
-We use a jitter of 0.05 cm, which should be reasonable given the resolution of
-the data appeared to be 0.1 cm. It should also be noted that the reproducibility
-of this particular figure depends on the value given to `set.seed` in the 
-[**Parameters** section](#parameters).
+We use a jitter of 0.05 cm, which should be reasonable given the
+resolution of the data appeared to be 0.1 cm. It should also be noted
+that the reproducibility of this particular figure depends on the value
+given to `set.seed` in the [**Parameters** section](#parameters).
 
 ## Comparing Sepal Width across Species
 
@@ -108,8 +126,9 @@ iris %>%
 We observe the median sepal width is widest in the *I. setosa* species.
 
 # Conclusion
-This document demonstrated a few typical practices in an R Markdown document.
-<!--
+
+This document demonstrated a few typical practices in an R Markdown
+document. <!--
 In a real analysis, one would clearly state each conclusion and answer 
 questions like:
 What was found?
@@ -118,12 +137,16 @@ Are there unanswered questions?
 What should be worked on next?
 -->
 
----
+------------------------------------------------------------------------
 
 # Runtime Details
+
 ## Session Info
+
 <details>
+
 ```{r session_info, echo=FALSE}
 sessionInfo()
 ```
+
 </details>
